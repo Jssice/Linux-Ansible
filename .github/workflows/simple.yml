@@ -1,0 +1,27 @@
+name: simple
+on: 
+  #[push]
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on:
+      - self-hosted
+      - label-1
+    steps:
+      - name: Checkout repo to use the action locally
+        uses: actions/checkout@v2
+        
+      - name: Run a one-line script
+        run: echo Hello Nexus!
+              sleep 15
+              echo Goodbye!
+      
+      - name: Output the answer
+        run: echo "The answer is ${{ github.workspace }}"
+      
+      # - name: Test the container
+      #   if: ${{ steps.action.outputs.answer != 42 }}
+      #   run: |
+      #     echo "::error file=entrypoint.sh,line=4,title=Error in container::The answer was not expected"
+      #     exit 1
